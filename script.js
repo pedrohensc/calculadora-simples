@@ -97,3 +97,24 @@ invertBtn.textContent = '+/-';
 invertBtn.dataset.action = 'invert';
 invertBtn.addEventListener('click', invertSign);
 document.querySelector('.buttons').insertBefore(invertBtn, document.querySelector('[data-action="equals"]'));
+
+let memory = 0;
+
+function memoryAdd() { memory += parseFloat(current) || 0; }
+function memorySubtract() { memory -= parseFloat(current) || 0; }
+function memoryRecall() { current = String(memory); updateDisplay(); }
+function memoryClear() { memory = 0; }
+
+const memButtons = [
+  {text:'M+', action: memoryAdd},
+  {text:'M-', action: memorySubtract},
+  {text:'MR', action: memoryRecall},
+  {text:'MC', action: memoryClear},
+];
+
+memButtons.forEach(btnInfo => {
+  const btn = document.createElement('button');
+  btn.textContent = btnInfo.text;
+  btn.addEventListener('click', btnInfo.action);
+  document.querySelector('.buttons').insertBefore(btn, document.querySelector('[data-number]'));
+});
