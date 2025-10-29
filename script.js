@@ -118,3 +118,20 @@ memButtons.forEach(btnInfo => {
   btn.addEventListener('click', btnInfo.action);
   document.querySelector('.buttons').insertBefore(btn, document.querySelector('[data-number]'));
 });
+function computeAndPrepareNext(op) {
+  if (current === '') return;
+  if (previous !== '') {
+    compute();
+  }
+  operation = op;
+  previous = current;
+  current = '';
+  updateDisplay();
+}
+
+// Alterar os botões de operação para usar essa função
+document.querySelectorAll('[data-action="operator"]').forEach(button => {
+  button.addEventListener('click', () => {
+    computeAndPrepareNext(button.textContent);
+  });
+});
