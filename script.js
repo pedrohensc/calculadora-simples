@@ -68,3 +68,14 @@ function deleteLast() { current = current.slice(0,-1); updateDisplay(); }
 
 document.querySelector('[data-action="clear"]').addEventListener('click', clearAll);
 document.querySelector('[data-action="delete"]').addEventListener('click', deleteLast);
+
+window.addEventListener('keydown', (e) => {
+  if ((e.key >= '0' && e.key <= '9') || e.key === '.') appendNumber(e.key);
+  if (['+','-','/','*'].includes(e.key)) {
+    const map = {'/':'÷','*':'×'};
+    chooseOperation(map[e.key] || e.key);
+  }
+  if (e.key === 'Enter' || e.key === '=') compute();
+  if (e.key === 'Backspace') deleteLast();
+  if (e.key.toLowerCase() === 'c') clearAll();
+});
