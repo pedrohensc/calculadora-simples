@@ -41,3 +41,24 @@ function chooseOperation(op) {
 document.querySelectorAll('[data-action="operator"]').forEach(btn => {
   btn.addEventListener('click', ()=> chooseOperation(btn.textContent));
 });
+function compute() {
+  const prev = parseFloat(previous);
+  const curr = parseFloat(current);
+  if (isNaN(prev) || isNaN(curr)) return;
+  let result;
+  switch (operation) {
+    case '+': result = prev + curr; break;
+    case '-': result = prev - curr; break;
+    case '×': result = prev * curr; break;
+    case '÷':
+      if (curr === 0) { result = 'Erro'; break; }
+      result = prev / curr; break;
+    default: return;
+  }
+  current = String(result);
+  previous = '';
+  operation = null;
+  updateDisplay();
+}
+
+document.querySelector('[data-action="equals"]').addEventListener('click', compute);
