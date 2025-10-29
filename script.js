@@ -62,3 +62,9 @@ function compute() {
 }
 
 document.querySelector('[data-action="equals"]').addEventListener('click', compute);
+
+function clearAll() { current = ''; previous = ''; operation = null; updateDisplay(); }
+function deleteLast() { current = current.slice(0,-1); updateDisplay(); }
+
+document.querySelector('[data-action="clear"]').addEventListener('click', clearAll);
+document.querySelector('[data-action="delete"]').addEventListener('click', deleteLast);
