@@ -19,3 +19,25 @@ function appendNumber(num) {
 document.querySelectorAll('[data-number]').forEach(btn => {
   btn.addEventListener('click', ()=> appendNumber(btn.textContent));
 });
+
+function chooseOperation(op) {
+  if (current === '' && previous === '') return;
+  if (current === '' && previous !== '') {
+    operation = op;
+    updateDisplay();
+    return;
+  }
+  if (previous === '') {
+    previous = current;
+    current = '';
+    operation = op;
+  } else {
+    compute();
+    operation = op;
+  }
+  updateDisplay();
+}
+
+document.querySelectorAll('[data-action="operator"]').forEach(btn => {
+  btn.addEventListener('click', ()=> chooseOperation(btn.textContent));
+});
