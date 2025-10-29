@@ -79,3 +79,21 @@ window.addEventListener('keydown', (e) => {
   if (e.key === 'Backspace') deleteLast();
   if (e.key.toLowerCase() === 'c') clearAll();
 });
+
+function invertSign() {
+  if (current === '' || current === '0') return;
+  if (current.startsWith('-')) {
+    current = current.slice(1);
+  } else {
+    current = '-' + current;
+  }
+  updateDisplay();
+}
+
+// Criar botão +/- no HTML, por exemplo, entre 0 e =
+// Se já tiver botão, vincule o evento:
+const invertBtn = document.createElement('button');
+invertBtn.textContent = '+/-';
+invertBtn.dataset.action = 'invert';
+invertBtn.addEventListener('click', invertSign);
+document.querySelector('.buttons').insertBefore(invertBtn, document.querySelector('[data-action="equals"]'));
