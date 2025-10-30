@@ -138,3 +138,16 @@ button[data-action]:hover {
   opacity: 0.9;
   transform: scale(1.05);
 }
+
+/* Ruan: commit 8 - efeitos visuais */
+button:active {
+  transform: scale(0.95);
+}
+
+.calculator {
+  transition: transform 0.3s ease;
+}
+
+.calculator:hover {
+  transform: translateY(-5px);
+}
