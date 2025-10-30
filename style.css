@@ -28,3 +28,20 @@ button {
   background: #ddd;
   cursor: pointer;
 }
+
+/* Ruan: commit 2 - tema de cores */
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calculator {
+  background: #2d3748;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
