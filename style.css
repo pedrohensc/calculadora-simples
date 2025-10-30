@@ -116,6 +116,24 @@ button[data-action="equals"] {
   grid-column: span 1;
 }
 
+/* Ruan: commit 7 - responsividade */
+@media (max-width: 400px) {
+  .calculator {
+    width: 90%;
+    margin: 20px auto;
+    padding: 15px;
+  }
+  
+  button {
+    padding: 15px 10px;
+    font-size: 1em;
+  }
+  
+  .current-operand {
+    font-size: 2em;
+  }
+}
+
 button[data-action]:hover {
   opacity: 0.9;
   transform: scale(1.05);
