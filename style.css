@@ -1,0 +1,30 @@
+/* Ruan: primeiro commit - estilos básicos */
+.calculator {
+  width: 300px;
+  margin: 50px auto;
+  background: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.display {
+  background: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: right;
+  border-radius: 5px;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+button {
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  background: #ddd;
+  cursor: pointer;
+}
