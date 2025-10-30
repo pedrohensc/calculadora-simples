@@ -151,3 +151,15 @@ button:active {
 .calculator:hover {
   transform: translateY(-5px);
 }
+
+/* Ruan: commit 9 - botões de memória */
+button[onclick*="memory"] {
+  background: #6b46c1;
+  color: white;
+  font-size: 0.9em;
+  padding: 15px 10px;
+}
+
+button[onclick*="memory"]:hover {
+  background: #805ad5;
+}
