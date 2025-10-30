@@ -91,3 +91,14 @@ button[data-number]:hover {
   background: #718096;
   transform: scale(1.05);
 }
+
+/* Ruan: commit 5 - botões de operação */
+button[data-action="operator"] {
+  background: #f6ad55;
+  color: #2d3748;
+}
+
+button[data-action="operator"]:hover {
+  background: #fbd38d;
+  transform: scale(1.05);
+}
