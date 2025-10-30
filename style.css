@@ -45,3 +45,28 @@ body {
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
+
+/* Ruan: commit 3 - estilizar display */
+.display {
+  background: #1a202c;
+  color: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.current-operand {
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+.previous-operand {
+  font-size: 1.2em;
+  color: #a0aec0;
+  margin-bottom: 5px;
+}
