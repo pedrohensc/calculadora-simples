@@ -102,3 +102,21 @@ button[data-action="operator"]:hover {
   background: #fbd38d;
   transform: scale(1.05);
 }
+
+/* Ruan: commit 6 - botões especiais */
+button[data-action="clear"],
+button[data-action="delete"] {
+  background: #e53e3e;
+  color: white;
+}
+
+button[data-action="equals"] {
+  background: #38a169;
+  color: white;
+  grid-column: span 1;
+}
+
+button[data-action]:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
