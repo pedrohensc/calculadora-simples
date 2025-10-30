@@ -184,3 +184,38 @@ button:focus {
 body {
   user-select: none;
 }
+
+/* Ruan: commit 11 - corrige layout dos botões */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+/* Garante que todos os botões fiquem no grid */
+.buttons button {
+  grid-column: span 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60px;
+}
+
+/* Botão de igual ocupa 1 coluna apenas */
+button[data-action="equals"] {
+  grid-column: span 1;
+}
+
+/* Botão zero ocupa 1 coluna */
+button[data-number="0"] {
+  grid-column: span 1;
+}
+
+/* Remove estilos específicos que podem estar conflitando */
+button[onclick*="memory"] {
+  background: #6b46c1;
+  color: white;
+  font-size: 0.9em;
+  padding: 15px 10px;
+  grid-column: span 1 !important;
+}
