@@ -269,3 +269,14 @@ button[onclick*="memory"]:nth-of-type(4) { grid-area: mem4; }
 button[data-action="clear"] {
   grid-column: span 2;
 }
+
+/* Ruan: commit 13 - solução simples: remove funções extras */
+
+/* Esconde apenas os botões problemáticos */
+button[onclick*="memory"] {
+  display: none !important;
+}
+
+button[data-action="invert"] {
+  display: none !important;
+}
