@@ -163,3 +163,24 @@ button[onclick*="memory"] {
 button[onclick*="memory"]:hover {
   background: #805ad5;
 }
+
+/* Ruan: commit 10 - ajustes finais */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.equals {
+  grid-column: span 1;
+}
+
+/* Melhora acessibilidade */
+button:focus {
+  outline: 3px solid #63b3ed;
+  outline-offset: 2px;
+}
+
+body {
+  user-select: none;
+}
