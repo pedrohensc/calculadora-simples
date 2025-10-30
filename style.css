@@ -70,3 +70,24 @@ body {
   color: #a0aec0;
   margin-bottom: 5px;
 }
+
+/* Ruan: commit 4 - botões numéricos */
+button {
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button[data-number] {
+  background: #4a5568;
+  color: white;
+}
+
+button[data-number]:hover {
+  background: #718096;
+  transform: scale(1.05);
+}
