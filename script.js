@@ -100,18 +100,11 @@ function clearAll() {
 function deleteLast() { current = current.slice(0, -1); updateDisplay(); }
 
 // Inverter sinal
-function invertSign() {
   if (current === '' || current === '0') return;
   current = current.startsWith('-') ? current.slice(1) : '-' + current;
   updateDisplay();
 }
 
-// Funções de memória
-let memory = 0;
-function memoryAdd() { memory += parseFloat(current) || 0; }
-function memorySubtract() { memory -= parseFloat(current) || 0; }
-function memoryRecall() { current = String(memory); updateDisplay(); }
-function memoryClear() { memory = 0; }
 
 // Eventos de clique
 document.querySelectorAll('[data-number]').forEach(btn => {
@@ -126,5 +119,4 @@ document.querySelector('[data-action="equals"]').addEventListener('click', handl
 document.querySelector('[data-action="clear"]').addEventListener('click', clearAll);
 document.querySelector('[data-action="delete"]').addEventListener('click', deleteLast);
 
-// Teclado
-window.addEventListener('
+
