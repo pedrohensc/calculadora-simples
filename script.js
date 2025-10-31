@@ -2,85 +2,108 @@ let current = '';
 let previous = '';
 let operation = null;
 let resultDisplayed = false;
-let lastOperation = null;
+let lastOperation = null; // Armazena a última operação e valor para repetição
 
 const currentEl = document.getElementById('current');
 const previousEl = document.getElementById('previous');
 
 // Atualiza o display
 function updateDisplay() {
-  currentEl.textContent = current || '0';
-  previousEl.textContent = previous && operation ? `${previous} ${operation}` : '';
+  currentEl.textContent = current || '0';
+  previousEl.textContent = previous && operation ? `${previous} ${operation}` : '';
 }
 
 // Adiciona número
 function appendNumber(num) {
-  if (num === '.' && current.includes('.')) return;
-  current = (current === '0' && num !== '.') ? num : current + num;
-  updateDisplay();
+  // Se um número for adicionado, saímos do modo 'resultado exibido'
+  if (resultDisplayed) {
+    current = '';
+    resultDisplayed = false;
+  }
+  if (num === '.' && current.includes('.')) return;
+  current = (current === '0' && num !== '.') ? num : current + num;
+  updateDisplay();
 }
 
 // Escolhe operação
 function chooseOperation(op) {
-  if (current === '' && previous === '') return;
-  if (previous !== '' && current !== '') compute();
-  operation = op;
-  previous = current;
-  current = '';
-  updateDisplay();
+  if (current === '' && previous === '') return;
+  if (previous !== '' && current !== '') compute();
+  operation = op;
+  previous = current;
+  current = '';
+  resultDisplayed = false; // Garante que a repetição só ocorra após um '='
+  updateDisplay();
 }
 
 // Computa resultado
 function compute() {
-  const prev = parseFloat(previous);
-  const curr = parseFloat(current);
-  if (isNaN(prev) || isNaN(curr)) return;
+  const prev = parseFloat(previous);
+  const curr = parseFloat(current);
+  if (isNaN(prev) || isNaN(curr)) return;
 
-  let result;
-  switch (operation) {
-    case '+': result = prev + curr; break;
-    case '-': result = prev - curr; break;
-    case '×': result = prev * curr; break;
-    case '÷': result = curr === 0 ? 'Erro' : prev / curr; break;
-    default: return;
-  }
+  let result;
+  switch (operation) {
+    case '+': result = prev + curr; break;
+    case '-': result = prev - curr; break;
+    case '×': result = prev * curr; break;
+    case '÷': result = curr === 0 ? 'Erro' : prev / curr; break;
+    default: return;
+  }
 
-  current = String(result);
-  previous = '';
-  lastOperation = { op: operation, value: curr };
-  operation = null;
-  resultDisplayed = true;
-  updateDisplay();
+  current = String(result);
+  previous = '';
+  
+  // SALVA a operação e o valor para repetição
+  lastOperation = { op: operation, value: curr }; 
+  
+  operation = null;
+  resultDisplayed = true;
+  updateDisplay();
 }
 
-// Repetir última operação
+// Repetir última operação (Corrigido para repetição contínua!)
 function handleEqual() {
-  if (resultDisplayed && lastOperation) {
-    const prev = parseFloat(current);
-    let result;
-    switch (lastOperation.op) {
-      case '+': result = prev + lastOperation.value; break;
-      case '-': result = prev - lastOperation.value; break;
-      case '×': result = prev * lastOperation.value; break;
-      case '÷': result = lastOperation.value === 0 ? 'Erro' : prev / lastOperation.value; break;
-    }
-    current = String(result);
-    updateDisplay();
-  } else {
-    compute();
-  }
-  resultDisplayed = true;
+  if (resultDisplayed && lastOperation) {
+    // Está no modo de repetição (apertou '=' repetidas vezes)
+    const prev = parseFloat(current);
+    const repeatValue = lastOperation.value;
+    
+    let result;
+    switch (lastOperation.op) {
+      case '+': result = prev + repeatValue; break;
+      case '-': result = prev - repeatValue; break;
+      case '×': result = prev * repeatValue; break;
+      case '÷': result = repeatValue === 0 ? 'Erro' : prev / repeatValue; break;
+      default: return;
+    }
+
+    current = String(result);
+    // previous e lastOperation NÃO SÃO LIMPOS, garantindo a repetição
+    updateDisplay();
+  } else {
+    // Chamada inicial de '='
+    compute();
+  }
+  resultDisplayed = true;
 }
 
 // Limpar e deletar
-function clearAll() { current = ''; previous = ''; operation = null; updateDisplay(); }
+function clearAll() { 
+  current = ''; 
+  previous = ''; 
+  operation = null; 
+  lastOperation = null; // Limpa a memória de repetição
+  resultDisplayed = false;
+  updateDisplay(); 
+}
 function deleteLast() { current = current.slice(0, -1); updateDisplay(); }
 
 // Inverter sinal
 function invertSign() {
-  if (current === '' || current === '0') return;
-  current = current.startsWith('-') ? current.slice(1) : '-' + current;
-  updateDisplay();
+  if (current === '' || current === '0') return;
+  current = current.startsWith('-') ? current.slice(1) : '-' + current;
+  updateDisplay();
 }
 
 // Funções de memória
@@ -92,11 +115,11 @@ function memoryClear() { memory = 0; }
 
 // Eventos de clique
 document.querySelectorAll('[data-number]').forEach(btn => {
-  btn.addEventListener('click', () => appendNumber(btn.textContent));
+  btn.addEventListener('click', () => appendNumber(btn.textContent));
 });
 
 document.querySelectorAll('[data-action="operator"]').forEach(btn => {
-  btn.addEventListener('click', () => chooseOperation(btn.textContent));
+  btn.addEventListener('click', () => chooseOperation(btn.textContent));
 });
 
 document.querySelector('[data-action="equals"]').addEventListener('click', handleEqual);
@@ -104,35 +127,4 @@ document.querySelector('[data-action="clear"]').addEventListener('click', clearA
 document.querySelector('[data-action="delete"]').addEventListener('click', deleteLast);
 
 // Teclado
-window.addEventListener('keydown', (e) => {
-  if ((e.key >= '0' && e.key <= '9') || e.key === '.') appendNumber(e.key);
-  if (['+','-','/','*'].includes(e.key)) {
-    const map = {'/':'÷','*':'×'};
-    chooseOperation(map[e.key] || e.key);
-  }
-  if (e.key === 'Enter' || e.key === '=') handleEqual();
-  if (e.key === 'Backspace') deleteLast();
-  if (e.key.toLowerCase() === 'c') clearAll();
-});
-
-// Criação dos botões dinâmicos
-const container = document.querySelector('.buttons');
-
-const invertBtn = document.createElement('button');
-invertBtn.textContent = '+/-';
-invertBtn.addEventListener('click', invertSign);
-container.insertBefore(invertBtn, document.querySelector('[data-action="equals"]'));
-
-const memButtons = [
-  {text:'M+', action: memoryAdd},
-  {text:'M-', action: memorySubtract},
-  {text:'MR', action: memoryRecall},
-  {text:'MC', action: memoryClear},
-];
-memButtons.forEach(info => {
-  const btn = document.createElement('button');
-  btn.textContent = info.text;
-  btn.addEventListener('click', info.action);
-  container.insertBefore(btn, document.querySelector('[data-number]'));
-});
-
+window.addEventListener('
