@@ -222,13 +222,3 @@ button[onclick*="memory"] {
 
 
 
-/* Ruan: commit 13 - solução simples: remove funções extras */
-
-/* Esconde apenas os botões problemáticos */
-button[onclick*="memory"] {
-  display: none !important;
-}
-
-button[data-action="invert"] {
-  display: none !important;
-}
