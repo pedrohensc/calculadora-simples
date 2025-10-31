@@ -176,8 +176,8 @@ button[onclick*="memory"]:hover {
 
 /* Melhora acessibilidade */
 button:focus {
-  outline: 3px solid #63b3ed;
-  outline-offset: 2px;
+  outline: 5px solid #63b3ed;
+  outline-offset: 1px;
 }
 
 body {
