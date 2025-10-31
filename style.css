@@ -1,52 +1,33 @@
-/* Ruan: primeiro commit - estilos básicos */
-.calculator {
-  width: 300px;
-  margin: 50px auto;
-  background: #f0f0f0;
-  padding: 20px;
-  border-radius: 10px;
-}
+/* Ruan e Maria: CSS Limpo e Funcional */
 
-.display {
-  background: white;
-  padding: 10px;
-  margin-bottom: 10px;
-  text-align: right;
-  border-radius: 5px;
-}
-
-.buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-}
-
-button {
-  padding: 15px;
-  border: none;
-  border-radius: 5px;
-  background: #ddd;
-  cursor: pointer;
-}
-
-/* Ruan: commit 2 - tema de cores */
+/* Tema Geral */
 body {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #4c51bf 0%, #6b46c1 100%);
   font-family: Arial, sans-serif;
   min-height: 100vh;
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  user-select: none;
 }
 
+/* Calculadora Container */
 .calculator {
+  width: 300px;
+  margin: 50px auto;
   background: #2d3748;
+  padding: 20px;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
 }
 
-/* Ruan: commit 3 - estilizar display */
+.calculator:hover {
+  transform: translateY(-5px);
+}
+
+/* Display */
 .display {
   background: #1a202c;
   color: white;
@@ -71,7 +52,14 @@ body {
   margin-bottom: 5px;
 }
 
-/* Ruan: commit 4 - botões numéricos */
+/* Botões Container (Grid Simples) */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 colunas iguais */
+  gap: 15px; /* Espaçamento entre botões */
+}
+
+/* Estilo Base dos Botões */
 button {
   padding: 20px;
   border: none;
@@ -79,8 +67,27 @@ button {
   font-size: 1.2em;
   font-weight: bold;
   cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex; /* Para centralizar texto verticalmente */
+  justify-content: center;
+  align-items: center;
+  min-height: 60px; /* Altura mínima para os botões */
 }
 
+button:hover {
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button:focus {
+  outline: 5px solid #63b3ed;
+  outline-offset: 1px;
+}
+
+/* Botões Numéricos */
 button[data-number] {
   background: #4a5568;
   color: white;
@@ -88,10 +95,9 @@ button[data-number] {
 
 button[data-number]:hover {
   background: #718096;
-  transform: scale(1.05);
 }
 
-/* Ruan: commit 5 - botões de operação */
+/* Botões de Operação */
 button[data-action="operator"] {
   background: #f6ad55;
   color: #2d3748;
@@ -99,10 +105,9 @@ button[data-action="operator"] {
 
 button[data-action="operator"]:hover {
   background: #fbd38d;
-  transform: scale(1.05);
 }
 
-/* Ruan: commit 6 - botões especiais */
+/* Botões Especiais */
 button[data-action="clear"],
 button[data-action="delete"] {
   background: #e53e3e;
@@ -110,12 +115,11 @@ button[data-action="delete"] {
 }
 
 button[data-action="equals"] {
-  background: #38a169;
+  background: #48bb78; /* Verde vibrante */
   color: white;
-  grid-column: span 1;
 }
 
-/* Ruan: commit 7 - responsividade */
+/* Responsividade */
 @media (max-width: 400px) {
   .calculator {
     width: 90%;
@@ -133,91 +137,4 @@ button[data-action="equals"] {
   }
 }
 
-button[data-action]:hover {
-  opacity: 0.9;
-  transform: scale(1.05);
-}
-
-/* Ruan: commit 8 - efeitos visuais */
-button:active {
-  transform: scale(0.95);
-}
-
-.calculator {
-  transition: transform 0.3s ease;
-}
-
-.calculator:hover {
-  transform: translateY(-5px);
-}
-
-/* Ruan: commit 9 - botões de memória */
-button[onclick*="memory"] {
-  background: #6b46c1;
-  color: white;
-  font-size: 0.9em;
-  padding: 15px 10px;
-}
-
-button[onclick*="memory"]:hover {
-  background: #805ad5;
-}
-
-/* Ruan: commit 10 - ajustes finais */
-.buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-
-.equals {
-  grid-column: span 1;
-}
-
-/* Melhora acessibilidade */
-button:focus {
-  outline: 5px solid #63b3ed;
-  outline-offset: 2px;
-}
-
-body {
-  user-select: none;
-}
-
-/* Ruan: commit 11 - corrige layout dos botões */
-.buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-}
-
-/* Garante que todos os botões fiquem no grid */
-.buttons button {
-  grid-column: span 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 60px;
-}
-
-/* Botão de igual ocupa 1 coluna apenas */
-button[data-action="equals"] {
-  grid-column: span 1;
-}
-
-/* Botão zero ocupa 1 coluna */
-button[data-number="0"] {
-  grid-column: span 1;
-}
-
-/* Remove estilos específicos que podem estar conflitando */
-button[onclick*="memory"] {
-  background: #6b46c1;
-  color: white;
-  font-size: 0.9em;
-  padding: 15px 10px;
-  grid-column: span 1 !important;
-}
-
-
-
+/* --- Removidos estilos de 'grid-area', 'memory buttons' e outros que causam conflitos --- */
