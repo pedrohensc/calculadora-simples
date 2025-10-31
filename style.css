@@ -220,55 +220,7 @@ button[onclick*="memory"] {
   grid-column: span 1 !important;
 }
 
-/* Ruan: commit 12 - corrige layout quebrado dos botões */
 
-/* Container principal do grid */
-.buttons {
-  display: grid;
-  grid-template-areas: 
-    "mem1  mem2  mem3  mem4"
-    "clear clear delete divide"
-    "seven eight nine multiply"
-    "four  five  six   subtract"
-    "one   two   three add"
-    "zero  dot   sign  equals";
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-}
-
-/* Posiciona cada botão no grid */
-button[data-action="clear"]     { grid-area: clear; }
-button[data-action="delete"]    { grid-area: delete; }
-button[data-action="operator"]:nth-child(3) { grid-area: divide; }
-button[data-action="operator"]:nth-child(4) { grid-area: multiply; }
-button[data-action="operator"]:nth-child(5) { grid-area: subtract; }
-button[data-action="operator"]:nth-child(6) { grid-area: add; }
-
-button[data-number="7"]         { grid-area: seven; }
-button[data-number="8"]         { grid-area: eight; }
-button[data-number="9"]         { grid-area: nine; }
-button[data-number="4"]         { grid-area: four; }
-button[data-number="5"]         { grid-area: five; }
-button[data-number="6"]         { grid-area: six; }
-button[data-number="1"]         { grid-area: one; }
-button[data-number="2"]         { grid-area: two; }
-button[data-number="3"]         { grid-area: three; }
-button[data-number="0"]         { grid-area: zero; }
-button[data-number="."]         { grid-area: dot; }
-
-button[data-action="equals"]    { grid-area: equals; }
-button[data-action="invert"]    { grid-area: sign; }
-
-/* Botões de memória */
-button[onclick*="memory"]:nth-of-type(1) { grid-area: mem1; }
-button[onclick*="memory"]:nth-of-type(2) { grid-area: mem2; }
-button[onclick*="memory"]:nth-of-type(3) { grid-area: mem3; }
-button[onclick*="memory"]:nth-of-type(4) { grid-area: mem4; }
-
-/* Faz o botão CLEAR ocupar 2 colunas */
-button[data-action="clear"] {
-  grid-column: span 2;
-}
 
 /* Ruan: commit 13 - solução simples: remove funções extras */
 
