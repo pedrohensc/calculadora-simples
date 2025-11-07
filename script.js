@@ -11,6 +11,10 @@ const previousEl = document.getElementById('previous');
 function updateDisplay() {
   currentEl.textContent = current || '0';
   previousEl.textContent = previous && operation ? `${previous} ${operation}` : '';
+
+}
+function mudarFundoVerde() {
+  document.body.style.backgroundColor = 'green';
 }
 // botão porcentagem
 function handlePercent() {
