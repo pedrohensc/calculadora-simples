@@ -7,11 +7,14 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <button onclick="alert('Teste')"> botão </button>
   <main class="calculator">
     <div class="display">
       <div id="previous" class="previous-operand"></div>
       <div id="current" class="current-operand">0</div>
     </div>
+
+    <button data-action="percent">%</button> <!-- 🔽 NOVO BOTÃO -->
 
     <div class="buttons">
       <button data-action="clear">C</button>
@@ -21,7 +24,7 @@
       <button data-number>7</button>
       <button data-number>8</button>
       <button data-number>9</button>
-      <button data-action="operator">×</button>
+      <button data-action="operator">x</button>
 
       <button data-number>4</button>
       <button data-number>5</button>

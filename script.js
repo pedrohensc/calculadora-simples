@@ -12,6 +12,14 @@ function updateDisplay() {
   currentEl.textContent = current || '0';
   previousEl.textContent = previous && operation ? `${previous} ${operation}` : '';
 }
+// botão porcentagem
+function handlePercent() {
+  if (current === '') return;
+  current = String(parseFloat(current) / 100);
+  updateDisplay();
+}
+
+document.querySelector('[data-action="percent"]').addEventListener('click', handlePercent);
 
 // Adiciona número
 function appendNumber(num) {
