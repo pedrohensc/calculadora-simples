@@ -16,6 +16,14 @@ function updateDisplay() {
 function mudarFundoVerde() {
   document.body.style.backgroundColor = 'green';
 }
+// botão porcentagem
+function handlePercent() {
+  if (current === '') return;
+  current = String(parseFloat(current) / 100);
+  updateDisplay();
+}
+
+document.querySelector('[data-action="percent"]').addEventListener('click', handlePercent);
 
 // Adiciona número
 function appendNumber(num) {
