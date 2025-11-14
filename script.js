@@ -131,4 +131,17 @@ document.querySelector('[data-action="equals"]').addEventListener('click', handl
 document.querySelector('[data-action="clear"]').addEventListener('click', clearAll);
 document.querySelector('[data-action="delete"]').addEventListener('click', deleteLast);
 
+// FEAT: Adiciona timestamp de uso - por Ruan
+function mostrarTimestamp() {
+    const agora = new Date();
+    const timestamp = `Último uso: ${agora.toLocaleTimeString()}`;
+    console.log(timestamp);
+    return timestamp;
+}
 
+// Executa quando a página carrega
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(() => {
+        document.querySelector('.previous-operand').textContent = mostrarTimestamp();
+    }, 1000);
+});
