@@ -131,7 +131,7 @@ document.querySelector('[data-action="equals"]').addEventListener('click', handl
 document.querySelector('[data-action="clear"]').addEventListener('click', clearAll);
 document.querySelector('[data-action="delete"]').addEventListener('click', deleteLast);
 
-// FEAT: Adiciona timestamp de uso - por Ruan
+// FEAT: Adiciona timestamp de uso (Implementação feita por Ruan em 2025-11-13)
 function mostrarTimestamp() {
     const agora = new Date();
     const timestamp = `Último uso: ${agora.toLocaleTimeString()}`;
